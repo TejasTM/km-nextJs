@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "user1@example.com",
       "password": "password1"
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "user2@example.com",
       "password": "password2"
     },
@@ -29,6 +29,571 @@
       "id": "8745",
       "email": "tejasgowda0136@gmail.com",
       "password": "123456789"
+    },
+    {
+      "id": "0f23",
+      "email": "Aparna@123.com",
+      "password": "Aparna@007"
+    },
+    {
+      "id": "5161",
+      "email": "KArthik777@gmail.com",
+      "password": "K777"
+    },
+    {
+      "id": "c252",
+      "email": "Mahesh@456.com",
+      "password": "Mahi@10"
+    },
+    {
+      "id": "22fc",
+      "email": "yashaswini@852.com",
+      "password": "yash@852"
+    },
+    {
+      "id": "b9e3",
+      "email": "bhuvan16@gmail.com",
+      "password": "fluid96"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "brand": "Apple",
+      "model": "iPhone 13",
+      "image": "https://example.com/iphone13.jpg",
+      "price": 999.99
+    },
+    {
+      "id": "2",
+      "brand": "Apple",
+      "model": "MacBook Pro",
+      "image": "https://example.com/macbookpro.jpg",
+      "price": 1499.99
+    },
+    {
+      "id": "3",
+      "brand": "Samsung",
+      "model": "Galaxy S21",
+      "image": "https://example.com/galaxys21.jpg",
+      "price": 899.99
+    },
+    {
+      "id": "4",
+      "brand": "Samsung",
+      "model": "Galaxy Watch 4",
+      "image": "https://example.com/galaxywatch4.jpg",
+      "price": 299.99
+    },
+    {
+      "id": "5",
+      "brand": "Google",
+      "model": "Pixel 6",
+      "image": "https://example.com/pixel6.jpg",
+      "price": 799.99
+    },
+    {
+      "id": "6",
+      "brand": "Google",
+      "model": "Pixelbook Go",
+      "image": "https://example.com/pixelbookgo.jpg",
+      "price": 649.99
+    },
+    {
+      "id": "7",
+      "brand": "OnePlus",
+      "model": "9 Pro",
+      "image": "https://example.com/oneplus9pro.jpg",
+      "price": 899.99
+    },
+    {
+      "id": "8",
+      "brand": "OnePlus",
+      "model": "Buds Pro",
+      "image": "https://example.com/oneplusbudspro.jpg",
+      "price": 149.99
+    },
+    {
+      "id": "9",
+      "brand": "Xiaomi",
+      "model": "Mi 11",
+      "image": "https://example.com/mi11.jpg",
+      "price": 699.99
+    },
+    {
+      "id": "10",
+      "brand": "Xiaomi",
+      "model": "Redmi Note 10",
+      "image": "https://example.com/redminote10.jpg",
+      "price": 249.99
+    },
+    {
+      "id": "11",
+      "brand": "Apple",
+      "model": "iPad Pro",
+      "image": "https://example.com/ipadpro.jpg",
+      "price": 799.99
+    },
+    {
+      "id": "12",
+      "brand": "Apple",
+      "model": "AirPods Pro",
+      "image": "https://example.com/airpodspro.jpg",
+      "price": 249.99
+    },
+    {
+      "id": "13",
+      "brand": "Samsung",
+      "model": "Galaxy Tab S7",
+      "image": "https://example.com/galaxytabs7.jpg",
+      "price": 649.99
+    },
+    {
+      "id": "14",
+      "brand": "Samsung",
+      "model": "Galaxy Buds Live",
+      "image": "https://example.com/galaxybudslive.jpg",
+      "price": 169.99
+    },
+    {
+      "id": "15",
+      "brand": "Google",
+      "model": "Nest Audio",
+      "image": "https://example.com/nestaudio.jpg",
+      "price": 99.99
+    },
+    {
+      "id": "16",
+      "brand": "Google",
+      "model": "Chromecast with Google TV",
+      "image": "https://example.com/chromecast.jpg",
+      "price": 49.99
+    },
+    {
+      "id": "17",
+      "brand": "OnePlus",
+      "model": "Nord 2",
+      "image": "https://example.com/oneplusnord2.jpg",
+      "price": 399.99
+    },
+    {
+      "id": "18",
+      "brand": "OnePlus",
+      "model": "OnePlus Watch",
+      "image": "https://example.com/onepluswatch.jpg",
+      "price": 159.99
+    },
+    {
+      "id": "19",
+      "brand": "Xiaomi",
+      "model": "Mi Smart Band 6",
+      "image": "https://example.com/mismartband6.jpg",
+      "price": 49.99
+    },
+    {
+      "id": "20",
+      "brand": "Xiaomi",
+      "model": "Mi TV Stick",
+      "image": "https://example.com/mitvstick.jpg",
+      "price": 29.99
+    }
+  ],
+  "mobilePhone": [
+    {
+      "brand": "Apple",
+      "model": "iPhone 14 Pro Max",
+      "category": "Mobile Phone",
+      "description": "The latest flagship phone from Apple with a powerful A16 Bionic chip, innovative triple-lens camera system, and stunning Super Retina XDR display.",
+      "price": 1099,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Amazing performance and camera. Best phone I've ever owned!"
+        },
+        {
+          "rating": 4,
+          "comment": "Great phone, but battery life could be better."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "MacBook Air M2",
+      "category": "Laptop",
+      "description": "Apple's ultralight laptop with the powerful M2 chip, long battery life, and stunning Retina display.",
+      "price": 1299,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Thin, light, and incredibly fast. Perfect for productivity on the go."
+        },
+        {
+          "rating": 4,
+          "comment": "Limited port selection and slightly higher price compared to Windows alternatives."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone 13",
+      "category": "Mobile Phone",
+      "description": "The iPhone 13 delivers stunning performance with its A15 Bionic chip, advanced dual-camera system, and all-day battery life.",
+      "price": 799,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Sleek design, great camera, and smooth performance. Highly recommend!"
+        },
+        {
+          "rating": 4,
+          "comment": "Excellent phone, but a bit pricey."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone 12 Pro",
+      "category": "Mobile Phone",
+      "description": "The iPhone 12 Pro features a stunning design, powerful A14 Bionic chip, and advanced camera system for capturing pro-quality photos and videos.",
+      "price": 999,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Love the camera quality and performance. Worth every penny!"
+        },
+        {
+          "rating": 4,
+          "comment": "Great phone overall, but the battery life could be better."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone SE (2022)",
+      "category": "Mobile Phone",
+      "description": "The new iPhone SE packs powerful features into a compact design, including the A15 Bionic chip, advanced camera system, and 5G capability.",
+      "price": 399,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Excellent value for money. Performs like a flagship!"
+        },
+        {
+          "rating": 4,
+          "comment": "Compact size with great performance. Highly recommended for those on a budget."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone 11",
+      "category": "Mobile Phone",
+      "description": "The iPhone 11 features a dual-camera system, powerful A13 Bionic chip, and all-day battery life, making it a great choice for everyday use.",
+      "price": 699,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great phone with good camera quality and performance."
+        },
+        {
+          "rating": 4,
+          "comment": "Solid build quality and smooth performance. No complaints!"
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone XR",
+      "category": "Mobile Phone",
+      "description": "The iPhone XR offers a vibrant Liquid Retina display, powerful A12 Bionic chip, and advanced camera system, all in a sleek design.",
+      "price": 599,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Good phone with nice display and performance."
+        },
+        {
+          "rating": 3,
+          "comment": "Decent phone, but the battery life could be better."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone XS",
+      "category": "Mobile Phone",
+      "description": "The iPhone XS features a stunning OLED display, powerful A12 Bionic chip, and advanced dual-camera system for capturing stunning photos and videos.",
+      "price": 999,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great phone with excellent camera quality and performance."
+        },
+        {
+          "rating": 3,
+          "comment": "Nice design and features, but a bit expensive."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone 8 Plus",
+      "category": "Mobile Phone",
+      "description": "The iPhone 8 Plus features a large Retina HD display, powerful A11 Bionic chip, and dual-camera system for capturing stunning photos and videos.",
+      "price": 699,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Solid phone with good performance and camera."
+        },
+        {
+          "rating": 3,
+          "comment": "Decent phone, but starting to show its age."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone SE (2020)",
+      "category": "Mobile Phone",
+      "description": "The iPhone SE (2020) combines the compact design of the iPhone 8 with the powerful A13 Bionic chip and advanced camera system of the iPhone 11, offering great value for money.",
+      "price": 399,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great phone for those who prefer a smaller size. Performs like a flagship!"
+        },
+        {
+          "rating": 3,
+          "comment": "Decent performance and camera, but the design feels a bit dated."
+        }
+      ]
+    },
+    {
+      "brand": "Apple",
+      "model": "iPhone X",
+      "category": "Mobile Phone",
+      "description": "The iPhone X features a stunning Super Retina display, Face ID facial recognition, and powerful A11 Bionic chip, delivering an immersive and secure user experience.",
+      "price": 999,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Love the design and performance. Face ID works flawlessly!"
+        },
+        {
+          "rating": 4,
+          "comment": "Great phone overall, but a bit pricey."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy S23 Ultra",
+      "category": "Mobile Phone",
+      "description": "Samsung's top-of-the-line phone featuring a gorgeous AMOLED display, powerful Snapdragon 8 Gen 2 processor, and versatile quad-lens camera system.",
+      "price": 1199,
+      "discount": 5,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Incredible display and camera. Love the S Pen integration."
+        },
+        {
+          "rating": 4,
+          "comment": "Slightly expensive, but overall an excellent phone."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold 3",
+      "category": "Mobile Phone",
+      "description": "Samsung's foldable flagship phone with a stunning Infinity Flex display, powerful Snapdragon 888 processor, and versatile triple-lens camera system.",
+      "price": 1799,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Amazing folding technology! Love the large display and performance."
+        },
+        {
+          "rating": 4,
+          "comment": "Expensive, but worth it for the innovative design and features."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy S21 Ultra",
+      "category": "Mobile Phone",
+      "description": "The Galaxy S21 Ultra boasts a stunning AMOLED display, powerful Exynos 2100 processor, and versatile quad-lens camera system with 100x Space Zoom.",
+      "price": 1199,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Top-of-the-line phone with amazing camera capabilities. Highly recommend!"
+        },
+        {
+          "rating": 4,
+          "comment": "Great phone overall, but a bit heavy."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy Note 20 Ultra",
+      "category": "Mobile Phone",
+      "description": "The Galaxy Note 20 Ultra features a stunning Dynamic AMOLED display, powerful Snapdragon 865+ processor, and advanced S Pen functionality for enhanced productivity.",
+      "price": 1299,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Love the large display and S Pen functionality. Great for multitasking!"
+        },
+        {
+          "rating": 4,
+          "comment": "Expensive, but worth it for the premium features."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy Z Flip 3",
+      "category": "Mobile Phone",
+      "description": "Samsung's stylish foldable phone with a compact design, vibrant AMOLED display, and powerful Snapdragon 888 processor.",
+      "price": 999,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Sleek design and great performance. Love the foldable form factor!"
+        },
+        {
+          "rating": 3,
+          "comment": "Cool concept, but a bit pricey for the specs."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy S20 FE",
+      "category": "Mobile Phone",
+      "description": "The Galaxy S20 FE offers flagship features at a more affordable price, including a vibrant Super AMOLED display, powerful Snapdragon 865 processor, and versatile triple-lens camera system.",
+      "price": 699,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great value for money. Excellent camera and performance."
+        },
+        {
+          "rating": 3,
+          "comment": "Good phone, but the plastic back feels a bit cheap."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy A52",
+      "category": "Mobile Phone",
+      "description": "The Galaxy A52 offers a smooth AMOLED display, long-lasting battery life, and versatile quad-lens camera system at an affordable price.",
+      "price": 499,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Good mid-range phone with nice display and camera."
+        },
+        {
+          "rating": 3,
+          "comment": "Decent performance, but a bit overpriced for the specs."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy Note 10 Plus",
+      "category": "Mobile Phone",
+      "description": "The Galaxy Note 10 Plus features a stunning AMOLED display, powerful Snapdragon 855 processor, and advanced S Pen functionality for enhanced productivity.",
+      "price": 1099,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great phone with excellent display and productivity features."
+        },
+        {
+          "rating": 3,
+          "comment": "Good phone overall, but the battery life could be better."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy A72",
+      "category": "Mobile Phone",
+      "description": "The Galaxy A72 offers a smooth AMOLED display, long-lasting battery life, and versatile quad-lens camera system at an affordable price.",
+      "price": 599,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Good mid-range phone with nice display and camera."
+        },
+        {
+          "rating": 3,
+          "comment": "Decent performance, but a bit overpriced for the specs."
+        }
+      ]
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy S10 Plus",
+      "category": "Mobile Phone",
+      "description": "The Galaxy S10 Plus features a stunning Infinity-O display, powerful Exynos 9820 processor, and versatile triple-lens camera system, offering a premium smartphone experience.",
+      "price": 999,
+      "discount": 0,
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Great phone with excellent camera quality and performance."
+        },
+        {
+          "rating": 3,
+          "comment": "Nice design and features, but a bit expensive."
+        }
+      ]
+    },
+    {
+      "brand": "Sony",
+      "model": "WH-1000XM5 Wireless Noise-Cancelling Headphones",
+      "category": "Audio",
+      "description": "Industry-leading noise cancellation, exceptional sound quality, and comfortable design with long battery life.",
+      "price": 400,
+      "discount": 15,
+      "reviews": [
+        {
+          "rating": 5,
+          "comment": "Best noise-cancelling headphones I've ever used. Amazing sound!."
+        },
+        {
+          "rating": 4,
+          "comment": "Great noise cancellation and sound, but slightly expensive."
+        }
+      ]
     }
   ]
 }
