@@ -54,6 +54,16 @@
       "id": "b9e3",
       "email": "bhuvan16@gmail.com",
       "password": "fluid96"
+    },
+    {
+      "id": "0500",
+      "email": "loku@123.com",
+      "password": "Loku@123"
+    },
+    {
+      "id": "0ef3",
+      "email": "tejasgowda785@gmail.com",
+      "password": "asf"
     }
   ],
   "products": [
@@ -215,7 +225,8 @@
           "rating": 4,
           "comment": "Great phone, but battery life could be better."
         }
-      ]
+      ],
+      "id": "83cb"
     },
     {
       "brand": "Apple",
@@ -233,7 +244,8 @@
           "rating": 4,
           "comment": "Limited port selection and slightly higher price compared to Windows alternatives."
         }
-      ]
+      ],
+      "id": "b1f9"
     },
     {
       "brand": "Apple",
@@ -251,7 +263,8 @@
           "rating": 4,
           "comment": "Excellent phone, but a bit pricey."
         }
-      ]
+      ],
+      "id": "69c5"
     },
     {
       "brand": "Apple",
@@ -269,7 +282,8 @@
           "rating": 4,
           "comment": "Great phone overall, but the battery life could be better."
         }
-      ]
+      ],
+      "id": "87ee"
     },
     {
       "brand": "Apple",
@@ -287,7 +301,8 @@
           "rating": 4,
           "comment": "Compact size with great performance. Highly recommended for those on a budget."
         }
-      ]
+      ],
+      "id": "fc83"
     },
     {
       "brand": "Apple",
@@ -305,7 +320,8 @@
           "rating": 4,
           "comment": "Solid build quality and smooth performance. No complaints!"
         }
-      ]
+      ],
+      "id": "0e52"
     },
     {
       "brand": "Apple",
@@ -323,7 +339,8 @@
           "rating": 3,
           "comment": "Decent phone, but the battery life could be better."
         }
-      ]
+      ],
+      "id": "7edf"
     },
     {
       "brand": "Apple",
@@ -341,7 +358,8 @@
           "rating": 3,
           "comment": "Nice design and features, but a bit expensive."
         }
-      ]
+      ],
+      "id": "d4f1"
     },
     {
       "brand": "Apple",
@@ -359,7 +377,8 @@
           "rating": 3,
           "comment": "Decent phone, but starting to show its age."
         }
-      ]
+      ],
+      "id": "db10"
     },
     {
       "brand": "Apple",
@@ -377,7 +396,8 @@
           "rating": 3,
           "comment": "Decent performance and camera, but the design feels a bit dated."
         }
-      ]
+      ],
+      "id": "9d5b"
     },
     {
       "brand": "Apple",
@@ -395,7 +415,8 @@
           "rating": 4,
           "comment": "Great phone overall, but a bit pricey."
         }
-      ]
+      ],
+      "id": "4db0"
     },
     {
       "brand": "Samsung",
@@ -413,7 +434,8 @@
           "rating": 4,
           "comment": "Slightly expensive, but overall an excellent phone."
         }
-      ]
+      ],
+      "id": "ff75"
     },
     {
       "brand": "Samsung",
@@ -431,7 +453,8 @@
           "rating": 4,
           "comment": "Expensive, but worth it for the innovative design and features."
         }
-      ]
+      ],
+      "id": "6aef"
     },
     {
       "brand": "Samsung",
@@ -449,7 +472,8 @@
           "rating": 4,
           "comment": "Great phone overall, but a bit heavy."
         }
-      ]
+      ],
+      "id": "cc20"
     },
     {
       "brand": "Samsung",
@@ -467,7 +491,8 @@
           "rating": 4,
           "comment": "Expensive, but worth it for the premium features."
         }
-      ]
+      ],
+      "id": "8f93"
     },
     {
       "brand": "Samsung",
@@ -485,7 +510,8 @@
           "rating": 3,
           "comment": "Cool concept, but a bit pricey for the specs."
         }
-      ]
+      ],
+      "id": "6648"
     },
     {
       "brand": "Samsung",
@@ -503,7 +529,8 @@
           "rating": 3,
           "comment": "Good phone, but the plastic back feels a bit cheap."
         }
-      ]
+      ],
+      "id": "7c24"
     },
     {
       "brand": "Samsung",
@@ -521,7 +548,8 @@
           "rating": 3,
           "comment": "Decent performance, but a bit overpriced for the specs."
         }
-      ]
+      ],
+      "id": "7f56"
     },
     {
       "brand": "Samsung",
@@ -539,7 +567,8 @@
           "rating": 3,
           "comment": "Good phone overall, but the battery life could be better."
         }
-      ]
+      ],
+      "id": "5767"
     },
     {
       "brand": "Samsung",
@@ -557,7 +586,8 @@
           "rating": 3,
           "comment": "Decent performance, but a bit overpriced for the specs."
         }
-      ]
+      ],
+      "id": "be37"
     },
     {
       "brand": "Samsung",
@@ -575,7 +605,8 @@
           "rating": 3,
           "comment": "Nice design and features, but a bit expensive."
         }
-      ]
+      ],
+      "id": "fa52"
     },
     {
       "brand": "Sony",
@@ -593,7 +624,8 @@
           "rating": 4,
           "comment": "Great noise cancellation and sound, but slightly expensive."
         }
-      ]
+      ],
+      "id": "79e1"
     }
   ]
 }

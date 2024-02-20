@@ -23,11 +23,21 @@ function Dashboard() {
   const [searchData, setSearchData] = useState([]);
   const [filterData, setFilterData] = useState([]);
 
-  const apiUrl='http://localhost:3001/users'
+  const apiUrl='http://localhost:3001/mobilePhone'
+
+
   const handleDataReceived = (data) => {
-    setSearchData(data); // Receive data from the search component and set it in the state
-    console.log(searchData,"searchData");
-  };
+    setSearchData(prevData => data); // Using functional update
+    console.log(searchData, "searchData");
+};
+console.log(searchData, "search Data outside  changed")
+
+  useEffect(() => {
+    // Perform additional processing or actions when filterData changes
+    console.log("searchData data has changed:", searchData);
+  }, [searchData]);
+  // console.log("searchData data has changed:", searchData);
+
   const filterOptions = [
     { name: 'brand', label: 'Brand' },
   ];

@@ -1,10 +1,14 @@
 'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link'
 import postData from '@/utils/post';
 import RootLayout from '../../layout';
-import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import EmailInput from '@/app/components/formComponents/emailInput';
+import Password from '@/app/components/formComponents/password';
+import CustomButton from '@/app/components/formComponents/customButton';
+
 
 export default function Login() {
   const router = useRouter()
@@ -14,6 +18,9 @@ export default function Login() {
     password: ""
   });
   const [passwordErrors, setPasswordErrors] = useState([]);
+  const [emailError, setEmailError] = useState('');
+  const [error, setError] = useState({ email: "", password: "" });
+
 
   const apiUrl = 'http://localhost:3001/users';
 
@@ -23,46 +30,67 @@ export default function Login() {
       ...prevState,
       [name]: value
     }));
-
+  
+    // Clear errors for the corresponding field
     if (name === 'password') {
-      // Validate password
+      setPasswordErrors([]);
+    }
+  
+    if (name === 'email') {
+      setEmailError("");
+    }
+  
+    // Validate fields as they are being filled
+    if (name === 'password') {
       const errors = [];
-      const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-
-      if (value.length < 8) {
-        errors.push("Password must be at least 8 characters long.");
+      if (value) {
+        setError({password:""});
       }
-
-      if (!/[a-z]/.test(value)) {
-        errors.push("Password must contain at least one lowercase letter.");
-      }
-
-      if (!/[A-Z]/.test(value)) {
-        errors.push("Password must contain at least one uppercase letter.");
-      }
-
       setPasswordErrors(errors);
     }
+  
+    if (name === 'email') {
+      const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
+  
+      if (!isValidEmail) {
+        setEmailError("Invalid email address.");
+      } else {
+        setEmailError("");
+      }
+      if (value) {
+        setError({email:""});
+      }
+    }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call the postData function with the apiUrl and dataToSend
+    if (!data.email && !data.password) {
+      setError({ ...error, email: "Email Field is Required" , password: "Password Field is required"});
+      return;
+    }
+    
+    if (!data.password) {
+      setError({ ...error, password: "Password Field is required" });
+      return;
+    }
+  
     postData(apiUrl, data)
       .then(responseData => {
-        // Handle the response data returned from the API
         console.log('Response from API:', responseData);
       })
       .catch(error => {
-        // Handle any errors that occur during the POST request
         console.error('Error:', error);
       });
+  
+    // Clear form data
     setData({
       email: "",
       password: ""
-    })
-    router.push('/dashboard')
-
+    });
+  
+    // Redirect to '/users'
+    router.push('/users');
   };
 
 
@@ -70,31 +98,26 @@ export default function Login() {
     <RootLayout>
       <div className="flex items-center justify-center">
         <div className="p-6 bg-white rounded-lg shadow-md 2xl:w-2/5 md:w-3/4 sm:w-80 ">
-          <h2 className="text-2xl font-bold mb-4">Login</h2>
+          <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-4">Login</h2>
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">Name or Email</label>
-              <input
-                type="email"
+              <EmailInput
+                label="Email"
                 id="email"
+                placeholder="Email"
                 name="email"
-                placeholder='Email'
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                 value={data.email}
                 onChange={(e) => handleChange(e)}
+
               />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name='password'
-                placeholder='Password'
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              <div className="text-red-500 text-sm mt-1">
+                <p>{emailError || error.email}</p>
+              </div>
+              <Password
+                label="Password"
                 value={data.password}
+                name="password"
+                id="password"
+                placeholder="Password"
                 onChange={(e) => handleChange(e)}
               />
               {passwordErrors.length > 0 && (
@@ -104,15 +127,15 @@ export default function Login() {
                   ))}
                 </div>
               )}
-            </div>
-            <button
-              type="submit"
-              className="w-full px-4 py-2 mb-2 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-            >
-              Login
-            </button>
+              <div className="text-red-500 text-sm mt-1">
+                <p>{error.password}</p>
+              </div>
+              <CustomButton
+                type={"submit"}
+                label={"Login"}
+                />
             <p className="text-sm font-light text-gray-500">
-              Don't have an Account <Link href="/auth/register" className="font-medium text-indigo-600 hover:underline ">Register</Link>
+              Don't have an account? <Link href="/auth/register" className="font-medium text-indigo-600 hover:underline ">Register</Link>
             </p>
           </form>
         </div>

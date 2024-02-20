@@ -8,7 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import RootLayout from '../../layout'
-
+import EmailInput from '@/app/components/formComponents/emailInput';
+import Password from '@/app/components/formComponents/password';
+import TextInput from '@/app/components/formComponents/textInput';
+import CustomButton from '@/app/components/formComponents/customButton';
+import RadioGroup from '@/app/components/formComponents/radioGroup';
+import CustomCheckbox from '@/app/components/formComponents/customCheckbox';
 
 export default function Register() {
   const router = useRouter();
@@ -19,13 +24,83 @@ export default function Register() {
     }
   }, [router])
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ name: '', email: "", password: "", gender: "",termsAndConditions: false });
+  const [passwordErrors, setPasswordErrors] = useState([]);
+  const [emailError, setEmailError] = useState('');
+  const [nameError, setNameError] = useState('');
   const [error, setError] = useState({ email: "", password: "", name: '' });
 
+  const genderOptions = [{
+    label: "Male",
+    value: "male"
+  },
+  {
+    label: "Female",
+    value: "female"
+  },
+  {
+    label: "Others",
+    value: "Others"
+  }]
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+  
+    // Update form data
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  
+    // Clear errors for the corresponding field
+    if (name === 'password') {
+      setPasswordErrors([]);
+    } else if (name === 'email') {
+      setEmailError("");
+    }
+    else if (name === 'name') {
+      setNameError("");
+    }
+  
+    // Validate fields as they are being filled
+    if (name === 'password') {
+      const errors = [];
+  
+      if (value.length < 8) {
+        errors.push("Password must be at least 8 characters long.");
+      }
+  
+      if (!/[a-z]/.test(value)) {
+        errors.push("Password must contain at least one lowercase letter.");
+      }
+  
+      if (!/[A-Z]/.test(value)) {
+        errors.push("Password must contain at least one uppercase letter.");
+      }
+  
+      // Set error state if value is provided
+      setError(prevState => ({
+        ...prevState,
+        password: value ? "" : prevState.password
+      }));
+      
+      setPasswordErrors(errors);
+    } else if (name === 'email') {
+      const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
+  
+      setEmailError(isValidEmail ? "" : "Invalid email address.");
+      
+      // Set error state if value is provided
+      setError(prevState => ({
+        ...prevState,
+        email: value ? "" : prevState.email
+      }));
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email) {
-      setError({ ...error, email: "Email Field is Required" })
+    if (!formData.email || !formData.password || !formData.name) {
+      setError({ ...error, email: "Email Field is Required", password: "Password Field is required", name: "Name Field is required" });
       return;
     }
     if (!formData.password) {
@@ -36,17 +111,17 @@ export default function Register() {
       setError({ ...error, name: "Name Field is required" })
       return;
     }
-
-    const data = await register_me(formData);
-    if (data.success) {
-      toast.success(data.message);
-      setTimeout(() => {
-        router.push('/auth/login');
-      }, 2000);
-    }
-    else {
-      toast.error(data.message);
-    }
+    console.log(formData, "formData");
+    // const data = await register_me(formData);
+    // if (data.success) {
+    //   toast.success(data.message);
+    //   setTimeout(() => {
+    //     router.push('/auth/login');
+    //   }, 2000);
+    // }
+    // else {
+    //   toast.error(data.message);
+    // }
   }
 
 
@@ -54,41 +129,73 @@ export default function Register() {
     <>
       <RootLayout>
         <div className='flex justify-center'>
-            <div className="w-2/5 bg-white rounded-lg shadow dark:border text-black md:mt-0 sm:max-w-md xl:p-0 ">
-              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                  Register your account
-                </h1>
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
-                  <div className='text-left'>
-                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">Name</label>
-                    <input onChange={(e) => setFormData({ ...formData, name: e.target.value })} type="text" name="name" id="namw" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" placeholder="Name" required="" />
-                    {
-                      error.name && <p className="text-sm text-red-500">{error.name}</p>
-                    }
-                  </div>
-                  <div className='text-left'>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">email</label>
-                    <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" placeholder="name@company.com" required="" />
-                    {
-                      error.email && <p className="text-sm text-red-500">{error.email}</p>
-                    }
-                  </div>
-                  <div className='text-left'>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                    <input onChange={(e) => setFormData({ ...formData, password: e.target.value })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" required="" />
-                    {
-                      error.password && <p className="text-sm text-red-500">{error.password}</p>
-                    }
-                  </div>
-
-                  <button type="submit" className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign Up</button>
-                  <p className="text-sm font-light text-gray-500 ">
-                    Already have an account  <Link href="/auth/login" className="font-medium text-indigo-600 hover:underline ">Sign In</Link>
-                  </p>
-                </form>
+          <div className="p-6 bg-white rounded-lg shadow-md 2xl:w-2/5 md:w-3/4 sm:w-80 ">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-4">
+              Register your account
+            </h1>
+            <form onSubmit={handleSubmit}>
+              <RadioGroup
+                label={"Gender"}
+                name={"gender"} // Use lowercase "gender"
+                selectedOption={formData.gender}
+                options={genderOptions}
+                onChange={(e) => handleChange(e)}
+              />
+              <TextInput
+                label="Name"
+                name="name"
+                placeholder={"Name"}
+                value={formData.name}
+                onChange={(e) => handleChange(e)}
+              />
+              <div className="text-red-500 text-sm mt-1">
+                <p>{nameError || error.name}</p>
               </div>
-            </div>
+              <EmailInput
+                label="Email"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                onChange={(e) => handleChange(e)}
+
+              />
+              <div className="text-red-500 text-sm mt-1">
+                <p>{emailError || error.email}</p>
+              </div>
+
+              <Password
+                label="Password"
+                value={formData.password}
+                name="password"
+                id="password"
+                placeholder="Password"
+                onChange={(e) => handleChange(e)}
+              />
+              {passwordErrors.length > 0 && (
+                <div className="text-red-500 text-sm mt-1">
+                  {passwordErrors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  ))}
+                </div>
+              )}
+              <div className="text-red-500 text-sm mt-1">
+                <p>{error.password}</p>
+              </div>
+              <CustomCheckbox
+                onChange={(e) => handleChange(e)}
+                name={"termsAndConditions"}
+                label={"Accept terms and conditions"}
+                checked={formData.termsAndConditions}
+                 />
+              <CustomButton
+                type={"submit"}
+                label={"Register"}
+              />
+              <p className="text-sm font-light text-gray-500">
+               Already have an account? <Link href="/auth/login" className="font-medium text-indigo-600 hover:underline ">Sign in</Link>
+              </p>
+            </form>
+          </div>
           <ToastContainer />
         </div>
       </RootLayout>
