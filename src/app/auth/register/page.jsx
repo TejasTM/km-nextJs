@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { register_me } from '@/Services/auth';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+
 import RootLayout from '../../layout'
 import EmailInput from '@/app/components/formComponents/emailInput';
 import Password from '@/app/components/formComponents/password';
@@ -24,33 +25,35 @@ export default function Register() {
     }
   }, [router])
 
-  const [formData, setFormData] = useState({ name: '', email: "", password: "", gender: "",termsAndConditions: false });
+  const [formData, setFormData] = useState({ name: '', email: "", password: "", gender: "", termsAndConditions: false });
   const [passwordErrors, setPasswordErrors] = useState([]);
   const [emailError, setEmailError] = useState('');
   const [nameError, setNameError] = useState('');
   const [error, setError] = useState({ email: "", password: "", name: '' });
 
-  const genderOptions = [{
-    label: "Male",
-    value: "male"
-  },
-  {
-    label: "Female",
-    value: "female"
-  },
-  {
-    label: "Others",
-    value: "Others"
-  }]
+  const genderOptions = [
+    {
+      label: "Male",
+      value: "male"
+    },
+    {
+      label: "Female",
+      value: "female"
+    },
+    {
+      label: "Others",
+      value: "Others"
+    }
+  ]
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-  
+
     // Update form data
     setFormData(prevState => ({
       ...prevState,
       [name]: type === 'checkbox' ? checked : value
     }));
-  
+
     // Clear errors for the corresponding field
     if (name === 'password') {
       setPasswordErrors([]);
@@ -60,35 +63,35 @@ export default function Register() {
     else if (name === 'name') {
       setNameError("");
     }
-  
+
     // Validate fields as they are being filled
     if (name === 'password') {
       const errors = [];
-  
+
       if (value.length < 8) {
         errors.push("Password must be at least 8 characters long.");
       }
-  
+
       if (!/[a-z]/.test(value)) {
         errors.push("Password must contain at least one lowercase letter.");
       }
-  
+
       if (!/[A-Z]/.test(value)) {
         errors.push("Password must contain at least one uppercase letter.");
       }
-  
+
       // Set error state if value is provided
       setError(prevState => ({
         ...prevState,
         password: value ? "" : prevState.password
       }));
-      
+
       setPasswordErrors(errors);
     } else if (name === 'email') {
       const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
-  
+
       setEmailError(isValidEmail ? "" : "Invalid email address.");
-      
+
       // Set error state if value is provided
       setError(prevState => ({
         ...prevState,
@@ -96,7 +99,7 @@ export default function Register() {
       }));
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password || !formData.name) {
@@ -186,13 +189,13 @@ export default function Register() {
                 name={"termsAndConditions"}
                 label={"Accept terms and conditions"}
                 checked={formData.termsAndConditions}
-                 />
+              />
               <CustomButton
                 type={"submit"}
                 label={"Register"}
               />
               <p className="text-sm font-light text-gray-500">
-               Already have an account? <Link href="/auth/login" className="font-medium text-indigo-600 hover:underline ">Sign in</Link>
+                Already have an account? <Link href="/auth/login" className="font-medium text-indigo-600 hover:underline ">Sign in</Link>
               </p>
             </form>
           </div>

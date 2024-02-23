@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import fetchData from "@/utils/fetch";
 import ReactPaginate from 'react-paginate';
 import RootLayout from "./layout";
+import CustomTable from "./components/customTable2";
 
 function Home() {
   const [todos, setTodos] = useState([]);
@@ -76,7 +77,7 @@ function Home() {
       </div>
 
       </div>
-
+              <CustomTable/>
     </RootLayout>
 
   );
