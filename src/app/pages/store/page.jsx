@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useEffect, useState, useMemo } from "react";
-import RootLayout from "../layout";
-const data = require('../db.json')
+import DashboardLayout from "../layout";
+
+const data = require('../../db.json')
 
 function Store() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,7 +28,7 @@ function Store() {
 
   return (
     <>
-      <RootLayout>
+      <DashboardLayout>
         <div className="container mx-auto">
           <div className="flex justify-between align-center">
             <h1 className="text-3xl font-bold mb-6">Mobile Phones</h1>
@@ -76,7 +77,7 @@ function Store() {
             ))}
           </div>
         </div>
-      </RootLayout>
+      </DashboardLayout>
     </>
   )
 }

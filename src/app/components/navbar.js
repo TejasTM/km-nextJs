@@ -3,8 +3,11 @@
 import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react';
-import Image from "next/image"
-// import closeImg from "../../../public/close.png"
+
+
+import {PrimaryButton} from './buttons/Button';
+import { removeCookie } from '@/utils/cookie';
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const openDrawer = () => {
@@ -14,7 +17,12 @@ function Navbar() {
   const closeDrawer = () => {
     setIsOpen(false);
   };
-
+  const handleLogout = () => {
+    // After successful logout, remove the token cookie
+    removeCookie('token');
+    // Redirect to logout page
+    router.push('/auth/login');
+  }
 
   return (
     <nav className="navbar  bg-gray-800  fixed top-0 w-full z-10 ">
@@ -26,15 +34,21 @@ function Navbar() {
             alt='Kuremara'
           />
         </div>
-        <div className="sm:hidden space-x-4 2xl:mr-8 xl:mr-6 lg:mr-4 md:mr-4"> {/* Hide on small screens */}
+        <div className="sm:hidden  space-x-4 2xl:mr-8 xl:mr-6 lg:mr-4 md:mr-4"> {/* Hide on small screens */}
           <Link href="/" className="text-white hover:text-gray-300">Home</Link>
-          <Link href="/auth/login" className="text-white hover:text-gray-300">Login</Link>
-          <Link href="/auth/register" className="text-white hover:text-gray-300">Register</Link>
-          <Link href="/users" className="text-white hover:text-gray-300">Users</Link>
-          <Link href="/products" className="text-white hover:text-gray-300">Products</Link>
-          <Link href="/dashboard" className="text-white hover:text-gray-300">Dashboard</Link>
-          <Link href="/store" className="text-white hover:text-gray-300">Store</Link>
-
+          {/* <Link href="/auth/login" className="text-white hover:text-gray-300">Login</Link>
+          <Link href="/auth/register" className="text-white hover:text-gray-300">Register</Link> */}
+          <Link href="/pages/users" className="text-white hover:text-gray-300">Users</Link>
+          <Link href="/pages/products" className="text-white hover:text-gray-300">Products</Link>
+          <Link href="/pages/dashboard" className="text-white hover:text-gray-300">Dashboard</Link>
+          <Link href="/pages/store" className="text-white hover:text-gray-300">Store</Link>
+          <PrimaryButton onClick={handleLogout} label={"Logout"} color="blue"/>
+          {/* <button
+            onClick={handleLogout}
+            className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Logout
+          </button> */}
 
         </div>
         <div className="hidden sm:flex items-center mr-4"> {/* Show on small screens */}
@@ -46,33 +60,33 @@ function Navbar() {
           {isOpen && (
             <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50">
               <div className="bg-white h-full w-64 shadow-md fixed top-0 right-0">
-                  <div className="flex items-center justify-between p-2 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                      Navbar
-                    </h3>
-                    <button onClick={closeDrawer} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-                      <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                      </svg>
-                      <span className="sr-only">Close modal</span>
-                    </button>
-                  </div>
-                  <div className='flex flex-col align-between px-2 py-2 mx-4 my-2  bg-indigo-50 rounded-md	'>
-                    <Link href="/" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2"> Home</Link>
-                    <Link href="/auth/login" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Login</Link>
-                    <Link href="/auth/register" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Register</Link>
-                    <Link href="/users" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Users</Link>
-                    <Link href="/products" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Products</Link>
-                    <Link href="/dashboard" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Dashboard</Link>
-                    <Link href="/store" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Store</Link>
-                  </div>
+                <div className="flex items-center justify-between p-2 md:p-5 border-b rounded-t dark:border-gray-600">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    Navbar
+                  </h3>
+                  <button onClick={closeDrawer} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span className="sr-only">Close modal</span>
+                  </button>
                 </div>
+                <div className='flex flex-col align-between px-2 py-2 mx-4 my-2  bg-indigo-50 rounded-md	'>
+                  <Link href="/" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2"> Home</Link>
+                  {/* <Link href="/auth/login" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Login</Link>
+                  <Link href="/auth/register" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Register</Link> */}
+                  <Link href="/pages/users" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Users</Link>
+                  <Link href="/pages/products" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Products</Link>
+                  <Link href="/pages/dashboard" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Dashboard</Link>
+                  <Link href="/pages/store" className="text-gray-600 hover:text-black hover:bg-indigo-100 rounded-md py-2 px-2">Store</Link>
+                </div>
+              </div>
             </div>
           )}
         </div>
       </div>
     </nav>
-    
+
 
   )
 }

@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import RootLayout from '../layout';
+import RootLayout from '../../layout';
 import useFetch from '@/utils/useFetch/useFetch'; 
+import DashboardLayout from "../layout";
 
 function Products() {
   //usage of custom hooks for fetching the data i.e useFetch
@@ -38,7 +39,7 @@ function Products() {
     }
 
     return (
-      <RootLayout>
+      <DashboardLayout>
         <div className="p-4">
         <input
           type="text"
@@ -75,7 +76,7 @@ function Products() {
           paginate={paginate}
         />
       </div>
-      </RootLayout>
+      </DashboardLayout>
     )
 }
 
@@ -100,4 +101,4 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
       </nav>
     );
 };
-export default Products
+export default  Products;

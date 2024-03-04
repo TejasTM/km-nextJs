@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { register_me } from '@/Services/auth';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
@@ -15,6 +14,9 @@ import TextInput from '@/app/components/formComponents/textInput';
 import CustomButton from '@/app/components/formComponents/customButton';
 import RadioGroup from '@/app/components/formComponents/radioGroup';
 import CustomCheckbox from '@/app/components/formComponents/customCheckbox';
+import ApiSetup from '../api/apiSetup';
+import { USER_SIGNUP } from "../api/endPoints";
+import { setCookie } from '../../../utils/cookie';
 
 export default function Register() {
   const router = useRouter();
@@ -30,6 +32,8 @@ export default function Register() {
   const [emailError, setEmailError] = useState('');
   const [nameError, setNameError] = useState('');
   const [error, setError] = useState({ email: "", password: "", name: '' });
+
+
 
   const genderOptions = [
     {
@@ -100,6 +104,7 @@ export default function Register() {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password || !formData.name) {
@@ -114,24 +119,42 @@ export default function Register() {
       setError({ ...error, name: "Name Field is required" })
       return;
     }
-    console.log(formData, "formData");
-    // const data = await register_me(formData);
-    // if (data.success) {
-    //   toast.success(data.message);
-    //   setTimeout(() => {
-    //     router.push('/auth/login');
-    //   }, 2000);
-    // }
-    // else {
-    //   toast.error(data.message);
-    // }
-  }
 
+    // Assign role based on email domain
+    let role = 'user';
+    if (formData.email.endsWith('@yourcompany.com')) {
+      role = 'admin';
+    }
+
+    // Create user data object including role
+    const userData = { ...formData, role };
+
+    try {
+      const response = await ApiSetup.post(USER_SIGNUP, userData);
+      // Set token cookie instead of using localStorage
+      setCookie("token", response.data.token, { expires: 7 }); // Set cookie to expire in 7 days
+      console.log('Signup successful:', response.data.message);
+      // Redirect to '/users'
+      router.push('/');
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+
+    // Clear form data
+    setFormData({
+      name: '',
+      email: "",
+      password: "",
+      gender: "",
+      termsAndConditions: false,
+      role: "user" // Reset role to default after signup
+    });
+  }
 
   return (
     <>
-      <RootLayout>
-        <div className='flex justify-center'>
+      <RootLayout showNavbar={false}>
+        <div className='flex justify-center items-center h-full'>
           <div className="p-6 bg-white rounded-lg shadow-md 2xl:w-2/5 md:w-3/4 sm:w-80 ">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-4">
               Register your account
@@ -199,7 +222,6 @@ export default function Register() {
               </p>
             </form>
           </div>
-          <ToastContainer />
         </div>
       </RootLayout>
     </>

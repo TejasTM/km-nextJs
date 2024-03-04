@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation'
 import EmailInput from '@/app/components/formComponents/emailInput';
 import Password from '@/app/components/formComponents/password';
 import CustomButton from '@/app/components/formComponents/customButton';
-
+import ApiSetup from '../api/apiSetup';
+import { USER_SIGNIN } from "../api/endPoints";
 
 export default function Login() {
   const router = useRouter()
@@ -63,7 +64,7 @@ export default function Login() {
     }
   };
   
-  const handleSubmit = (e) => {
+  const  handleSubmit = async(e) => {
     e.preventDefault();
     if (!data.email && !data.password) {
       setError({ ...error, email: "Email Field is Required" , password: "Password Field is required"});
@@ -75,13 +76,17 @@ export default function Login() {
       return;
     }
   
-    postData(apiUrl, data)
-      .then(responseData => {
-        console.log('Response from API:', responseData);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    console.log(data, "formData");
+    try {
+      const response = await ApiSetup.post(USER_SIGNIN, data);
+      console.log("response.data",response.data);
+     
+      console.log('Signup successful:', response.data.message);
+      // Redirect to '/users'
+    router.push('/');
+    } catch (error) {
+      console.error('Error signing up:');
+    }
   
     // Clear form data
     setData({
@@ -90,12 +95,12 @@ export default function Login() {
     });
   
     // Redirect to '/users'
-    router.push('/users');
+    router.push('/');
   };
 
 
   return (
-    <RootLayout>
+    <RootLayout  >
       <div className="flex items-center justify-center">
         <div className="p-6 bg-white rounded-lg shadow-md 2xl:w-2/5 md:w-3/4 sm:w-80 ">
           <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-4">Login</h2>
