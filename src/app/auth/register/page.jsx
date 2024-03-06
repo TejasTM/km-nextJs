@@ -17,8 +17,9 @@ import CustomCheckbox from '@/app/components/formComponents/customCheckbox';
 import ApiSetup from '../api/apiSetup';
 import { USER_SIGNUP } from "../api/endPoints";
 import { setCookie } from '../../../utils/cookie';
+import authMiddleware from '@/middleware/authMiddleware';
 
-export default function Register() {
+ function Register() {
   const router = useRouter();
 
   useEffect(() => {
@@ -122,7 +123,7 @@ export default function Register() {
 
     // Assign role based on email domain
     let role = 'user';
-    if (formData.email.endsWith('@yourcompany.com')) {
+    if (formData.email.endsWith('@kuremara.com.au')) {
       role = 'admin';
     }
 
@@ -132,8 +133,8 @@ export default function Register() {
     try {
       const response = await ApiSetup.post(USER_SIGNUP, userData);
       // Set token cookie instead of using localStorage
-      setCookie("token", response.data.token, { expires: 7 }); // Set cookie to expire in 7 days
-      console.log('Signup successful:', response.data.message);
+      setCookie("usertype", response.data.user.userTpe); // Set cookie to expire in 7 days
+      console.log('Signup successful:', response.data);
       // Redirect to '/users'
       router.push('/');
     } catch (error) {
@@ -227,3 +228,4 @@ export default function Register() {
     </>
   )
 }
+export default Register

@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import RootLayout from '../../layout';
+import RootLayout from '../../../layout';
 import useFetch from '@/utils/useFetch/useFetch'; 
-import DashboardLayout from "../layout";
+import DashboardLayout from "../../layout";
+import authMiddleware from '@/middleware/authMiddleware';
 
 function Products() {
   //usage of custom hooks for fetching the data i.e useFetch
@@ -101,4 +102,4 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
       </nav>
     );
 };
-export default  Products;
+export default  authMiddleware()(Products);

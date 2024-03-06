@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useEffect, useState, useMemo } from "react";
-import DashboardLayout from "../layout";
+import DashboardLayout from "../../layout";
+import authMiddleware from "@/middleware/authMiddleware";
 
-const data = require('../../db.json')
+const data = require('../../../db.json')
 
 function Store() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -81,4 +82,4 @@ function Store() {
     </>
   )
 }
-export default Store;
+export default authMiddleware()(Store);

@@ -1,10 +1,11 @@
 'use client'
 
 import React,{useState,useEffect} from 'react'
-import ServerComp from "../../serverComp/serverComp";
+import ServerComp from "../../../serverComp/serverComp";
 // import RootLayout from '../../layout';
-import DashboardLayout from "../layout";
+import DashboardLayout from "../../layout";
 import fetchData from '@/utils/fetch';
+import authMiddleware from '@/middleware/authMiddleware';
 
 function Users() {
     const [userData, setUserData] = useState([]);
@@ -39,4 +40,4 @@ function Users() {
     )
 }
 
-export default Users
+export default authMiddleware()(Users)

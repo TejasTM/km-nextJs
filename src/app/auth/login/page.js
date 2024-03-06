@@ -10,8 +10,10 @@ import Password from '@/app/components/formComponents/password';
 import CustomButton from '@/app/components/formComponents/customButton';
 import ApiSetup from '../api/apiSetup';
 import { USER_SIGNIN } from "../api/endPoints";
+import { setCookie } from '@/utils/cookie';
+import authMiddleware from '@/middleware/authMiddleware';
 
-export default function Login() {
+ function Login() {
   const router = useRouter()
 
   const [data, setData] = useState({
@@ -79,13 +81,14 @@ export default function Login() {
     console.log(data, "formData");
     try {
       const response = await ApiSetup.post(USER_SIGNIN, data);
-      console.log("response.data",response.data);
+      setCookie("usertype", response.data.user.userType); 
+      console.log("usertype",response.data.user.userType);
      
       console.log('Signup successful:', response.data.message);
-      // Redirect to '/users'
+       // Redirect to '/users'
     router.push('/');
     } catch (error) {
-      console.error('Error signing up:');
+      console.error('Error signing up:',error);
     }
   
     // Clear form data
@@ -94,8 +97,7 @@ export default function Login() {
       password: ""
     });
   
-    // Redirect to '/users'
-    router.push('/');
+   
   };
 
 
@@ -149,3 +151,4 @@ export default function Login() {
     </RootLayout>
   );
 }
+export default Login

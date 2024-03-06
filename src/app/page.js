@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from "react";
 import fetchData from "@/utils/fetch";
 import ReactPaginate from 'react-paginate';
-import RootLayout from "./layout";
 import EnahancedTable from "./components/enhancedTable";
 import { GET_DEVICE } from "./auth/api/endPoints"
 import AntDTable from "./components/antDTable";
 import DashboardLayout from "./pages/layout"; 
+import authMiddleware from "@/middleware/authMiddleware";
+
 function Home() {
   const [todos, setTodos] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -136,4 +137,4 @@ const column = [
   );
 }
 
-export default Home;
+export default authMiddleware()(Home);

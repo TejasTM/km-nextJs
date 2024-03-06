@@ -1,19 +1,21 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../layout";
+import DashboardLayout from "../../layout";
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-import MyTable from '../../components/customTable'
-import SearchComponent from "../../components/searchComponent"
-import FilterComponent from "../../components/filterComponent";
-import CarouselComponent from "../../components/carouselComponent";
-import CustomModal from '../../components/customModal';
-import { PrimaryButton } from "../../components/buttons/Button";
+import MyTable from '../../../components/customTable'
+import SearchComponent from "../../../components/searchComponent"
+import FilterComponent from "../../../components/filterComponent";
+import CarouselComponent from "../../../components/carouselComponent";
+import CustomModal from '../../../components/customModal';
+import { PrimaryButton } from "../../../components/buttons/Button";
 import EmailInput from '@/app/components/formComponents/emailInput';
 import Password from '@/app/components/formComponents/password';
 import CustomButton from '@/app/components/formComponents/customButton';
+import authMiddleware from '../../../../middleware/authMiddleware';
+// import Middleware from "@/middleware";
 
 const columnData = [
   { id: 'brand', label: 'Brand' },
@@ -24,7 +26,7 @@ const columnData = [
   { id: 'discount', label: 'Discount' }
 
 ];
-const TableData = require('../../db.json')
+const TableData = require('../../../db.json')
 
 const title = "Mobile Phones"
 
@@ -245,4 +247,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default authMiddleware()(Dashboard)

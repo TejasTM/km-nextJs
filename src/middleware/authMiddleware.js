@@ -1,47 +1,56 @@
-// middleware/auth.js
+// middleware.js
 
-import jwt from 'jsonwebtoken';
 import { getCookie } from '../utils/cookie';
-import { useRouter } from 'next/router';
+import { useRouter,usePathname } from 'next/navigation';
 
-const authMiddleware = (allowedRoles = []) => (WrappedComponent) => {
+const authMiddleware = () => (WrappedComponent) => {
   const Auth = (props) => {
     const router = useRouter();
+    const pathname = usePathname()
 
-    // Get token from cookie
-    const token = getCookie('token');
+    // Get userType from cookie
+    const userType = getCookie('usertype');
 
-    // Redirect if token is not present or expired
-    if (!token) {
-      router.push('/login');
+    // Redirect if userType is not present
+    if (!userType) {
+      router.push('/auth/login');
       return null;
     }
 
-    // Decode token to get user role
-    const decodedToken = decodeToken(token);
-
-    // Check if user role is allowed
-    if (!allowedRoles.includes(decodedToken.role)) {
-      router.push('/unauthorized');
+    // Redirect to dashboard if user is already authenticated
+    if (pathname === '/auth/login' || pathname === '/auth/register') {
+      if (userType === 'user') {
+        router.push('/user-dashboard');
+      } else if (userType === 'admin') {
+        router.push('/admin-dashboard');
+      }
       return null;
     }
 
-    // If role is allowed, render the component
+    // Redirect based on userType
+    if (userType === "user") {
+      // Allow access to user pages, redirect if accessing admin pages
+      if (pathname.startsWith('/admin')) {
+        router.push('/pages/user/dashboard');
+        return null;
+      }
+    } else if (userType === "admin") {
+      // Allow access to admin pages, redirect if accessing user pages
+      if (pathname.startsWith('/user')) {
+        router.push('/pages/admin/admindashboard');
+        return null;
+      }
+    } else {
+      // If userType is not defined or invalid, redirect to login
+      router.push('/auth/login');
+      return null;
+    }
+
+    // Render the wrapped component if userType is allowed
     return <WrappedComponent {...props} />;
   };
 
   return Auth;
-};
-
-// Function to decode JWT token
-const decodeToken = (token) => {
-  try {
-    const decoded = jwt.verify(token, 'your_secret_key');
-    return decoded;
-  } catch (error) {
-    console.error('Error decoding token:', error);
-    return null;
-  }
 };
 
 export default authMiddleware;

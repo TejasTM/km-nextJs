@@ -6,9 +6,12 @@ import { useState } from 'react';
 
 
 import {PrimaryButton} from './buttons/Button';
+import { useRouter } from 'next/navigation'
+import ApiSetup from '../auth/api/apiSetup';
+import { USER_LOGOUT } from '../auth/api/endPoints';
 import { removeCookie } from '@/utils/cookie';
-
 function Navbar() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
   const openDrawer = () => {
     setIsOpen(true);
@@ -17,12 +20,21 @@ function Navbar() {
   const closeDrawer = () => {
     setIsOpen(false);
   };
-  const handleLogout = () => {
-    // After successful logout, remove the token cookie
-    removeCookie('token');
-    // Redirect to logout page
+  const handleLogout = async () => {
+    try {
+      const response = await ApiSetup.get(USER_LOGOUT,); // Replace '/api/remove-cookie' with your endpoint
+      if (!response.status === 200) {
+          throw new Error('Failed to remove cookie on the server');
+      }
+      // Assuming the server successfully removes the cookie
+      console.log('Cookie removed successfully');
     router.push('/auth/login');
-  }
+
+    } catch (error) {
+        console.error('Error logging out:', error);
+        // Handle error if necessary
+    }
+};
 
   return (
     <nav className="navbar  bg-gray-800  fixed top-0 w-full z-10 ">
@@ -38,11 +50,14 @@ function Navbar() {
           <Link href="/" className="text-white hover:text-gray-300">Home</Link>
           {/* <Link href="/auth/login" className="text-white hover:text-gray-300">Login</Link>
           <Link href="/auth/register" className="text-white hover:text-gray-300">Register</Link> */}
-          <Link href="/pages/users" className="text-white hover:text-gray-300">Users</Link>
-          <Link href="/pages/products" className="text-white hover:text-gray-300">Products</Link>
-          <Link href="/pages/dashboard" className="text-white hover:text-gray-300">Dashboard</Link>
-          <Link href="/pages/store" className="text-white hover:text-gray-300">Store</Link>
-          <PrimaryButton onClick={handleLogout} label={"Logout"} color="blue"/>
+          <Link href="/pages/user/users" className="text-white hover:text-gray-300">Users</Link>
+          <Link href="/pages/user/products" className="text-white hover:text-gray-300">Products</Link>
+          <Link href="/pages/user/dashboard" className="text-white hover:text-gray-300">Dashboard</Link>
+          <Link href="/pages/user/store" className="text-white hover:text-gray-300">Store</Link>
+          {/* <button onClick={handleLogout} >
+          Logout
+          </button> */}
+          <PrimaryButton  onClick={handleLogout} label={"Logout"} color="blue"/>
           {/* <button
             onClick={handleLogout}
             className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
